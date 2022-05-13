@@ -1,0 +1,7 @@
+# build coverage
+coverage
+
+# auto generate npm
+node_modules
+package-lock.json
+yarn.lock
