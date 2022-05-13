@@ -1,14 +1,9 @@
-interface LooseObject {
-  [key: string]: unknown;
-}
-
-export default abstract class Factory {
+export default abstract class Factory<M extends object, S extends object> {
   modelCount = 1;
-  modelSequence: Array<object> = [];
-  modelState: object = {};
-  modelCreate!: (data: object) => void;
+  modelSequence: Array<S> = [];
+  modelState: S = {} as S;
 
-  abstract definition(): LooseObject;
+  abstract definition(): M;
 
   abstract create(): unknown;
 
@@ -19,18 +14,19 @@ export default abstract class Factory {
     return this;
   }
 
-  sequence(modelSequence: Array<object>) {
+  sequence(modelSequence: Array<S>) {
     this.modelSequence = modelSequence;
     return this;
   }
 
-  state(modelState: object) {
+  state(modelState: S) {
     this.modelState = modelState;
     return this;
   }
 
-  useSequence(): Array<LooseObject> {
-    const data = [];
+  useSequence(): Array<M> {
+    const data: Array<M> = [];
+
     for (let i = 0; i < this.modelCount; i++) {
       const payload = this.definition();
 
@@ -50,18 +46,18 @@ export default abstract class Factory {
     return data;
   }
 
-  useState(obj: LooseObject): LooseObject {
+  useState(obj: M): M {
     return {
       ...obj,
       ...this.modelState,
     };
   }
 
-  makeOne(): LooseObject {
+  makeOne() {
     return this.useState(this.definition());
   }
 
-  makeMany(count?: number): Array<LooseObject> {
+  makeMany(count?: number): Array<M> {
     if (count) {
       this.count(count);
     }

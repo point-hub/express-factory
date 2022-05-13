@@ -1,6 +1,6 @@
 import Connection from "./connection.js";
 
-interface UserInterface {
+export interface UserInterface {
   name: string;
   age: number;
 }
