@@ -1,31 +1,31 @@
-export default abstract class Factory<M extends object, S extends object> {
+export default abstract class Factory<T, PartialT extends Partial<T>> {
   modelCount = 1;
-  modelSequence: Array<S> = [];
-  modelState: S = {} as S;
+  modelSequence: Array<PartialT> = [];
+  modelState: PartialT = {} as PartialT;
 
-  abstract definition(): M;
+  abstract definition(): T;
 
-  abstract create(): unknown;
+  abstract create(): Promise<unknown>;
 
-  abstract createMany(count: number): unknown;
+  abstract createMany(count: number): Promise<unknown>;
 
   count(modelCount: number) {
     this.modelCount = modelCount;
     return this;
   }
 
-  sequence(modelSequence: Array<S>) {
+  sequence(modelSequence: Array<PartialT>) {
     this.modelSequence = modelSequence;
     return this;
   }
 
-  state(modelState: S) {
+  state(modelState: PartialT) {
     this.modelState = modelState;
     return this;
   }
 
-  useSequence(): Array<M> {
-    const data: Array<M> = [];
+  useSequence(): Array<T> {
+    const data: Array<T> = [];
 
     for (let i = 0; i < this.modelCount; i++) {
       const payload = this.definition();
@@ -46,22 +46,18 @@ export default abstract class Factory<M extends object, S extends object> {
     return data;
   }
 
-  useState(obj: M): M {
+  useState(obj: T): T {
     return {
       ...obj,
       ...this.modelState,
     };
   }
 
-  makeOne() {
+  makeOne(): T {
     return this.useState(this.definition());
   }
 
-  makeMany(count?: number): Array<M> {
-    if (count) {
-      this.count(count);
-    }
-
-    return this.useSequence();
+  makeMany(count = 3): T[] {
+    return this.count(count).useSequence();
   }
 }

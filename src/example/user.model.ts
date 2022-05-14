@@ -6,7 +6,7 @@ export interface UserInterface {
 }
 
 export default class UserModel {
-  collectionName = "user";
+  collectionName = "users";
 
   async create(user: UserInterface) {
     return await Connection.getCollection(this.collectionName).insertOne(user);

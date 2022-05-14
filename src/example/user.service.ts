@@ -1,9 +1,4 @@
-import UserModel from "./user.model.js";
-
-interface UserInterface {
-  name: string;
-  age: number;
-}
+import UserModel, { UserInterface } from "./user.model.js";
 
 export default class UserService {
   async create(user: UserInterface) {
