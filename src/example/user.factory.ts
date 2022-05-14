@@ -1,13 +1,14 @@
 import { faker } from "@faker-js/faker";
 import Factory from "../index.js";
+import { UserInterface as ModelUserInterface } from "./user.model.js";
 import UserService from "./user.service.js";
 
-interface UserInterface {
-  name: string;
-  age: number;
+export interface UserInterface {
+  name?: string;
+  age?: number;
 }
 
-export default class UserFactory extends Factory {
+export default class UserFactory extends Factory<ModelUserInterface, UserInterface> {
   definition() {
     return {
       name: faker.name.findName(),
@@ -22,8 +23,8 @@ export default class UserFactory extends Factory {
     const userService = new UserService();
     const result = this.makeOne();
     return await userService.create({
-      name: result.name as string,
-      age: result.age as number,
+      name: result.name,
+      age: result.age,
     });
   }
 
@@ -31,14 +32,14 @@ export default class UserFactory extends Factory {
     const userService = new UserService();
     const result = this.makeMany(count);
 
-    const users: Array<UserInterface> = [];
+    const users: Array<ModelUserInterface> = [];
     for (let i = 0; i < result.length; i++) {
       users.push({
-        name: result[i].name as string,
-        age: result[i].age as number,
+        name: result[i].name,
+        age: result[i].age,
       });
     }
 
-    return await userService.createMany(users);
+    return userService.createMany(users);
   }
 }
