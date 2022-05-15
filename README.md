@@ -64,16 +64,20 @@ Use your factory in your test file
 
 ```javascript
 // Create one user
-new UserFactory().createOne();
+new UserFactory().create();
 
 // Create many users
 new UserFactory().createMany(3);
 
 // Make one user without saving to database
 new UserFactory().makeOne();
+// Alias
+new UserFactory().make();
 
 // Make many users without saving to database
 new UserFactory().makeMany(3);
+// Alias
+new UserFactory().make(3);
 
 // Use Sequence data
 const userFactory = new UserFactory();
@@ -88,5 +92,5 @@ const userFactory = new UserFactory();
 userFactory.state({
   age: 21,
 });
-const result = userFactory.createOne();
+const result = userFactory.create();
 ```

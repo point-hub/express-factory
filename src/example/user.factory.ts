@@ -18,7 +18,7 @@ export default class UserFactory extends Factory<UserInterface, Partial<UserInte
     return await new UserService().create(this.makeOne());
   }
 
-  async createMany(count?: number) {
+  async createMany(count: number) {
     return new UserService().createMany(this.makeMany(count));
   }
 }

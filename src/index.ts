@@ -53,11 +53,23 @@ export default abstract class Factory<T, PartialT extends Partial<T>> {
     };
   }
 
+  make(count = 1): T | T[] {
+    this.count(count);
+
+    if (this.modelCount === 1) {
+      return this.makeOne();
+    }
+
+    return this.makeMany(count);
+  }
+
   makeOne(): T {
     return this.useState(this.definition());
   }
 
-  makeMany(count = 3): T[] {
-    return this.count(count).useSequence();
+  makeMany(count: number): T[] {
+    this.count(count);
+
+    return this.useSequence();
   }
 }
