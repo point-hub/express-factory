@@ -15,12 +15,8 @@ Create a factory file and implement your model definition, create, and createMan
 ```javascript
 import { faker } from "@faker-js/faker";
 import Factory from "@point-hub/express-factory";
+import { UserInterface } from "./user.model.js";
 import UserService from "./user.service.js";
-
-interface UserInterface {
-  name: string;
-  age: number;
-}
 
 export default class UserFactory extends Factory {
   definition() {
@@ -34,27 +30,11 @@ export default class UserFactory extends Factory {
   }
 
   async create() {
-    const userService = new UserService();
-    const result = this.makeOne();
-    return await userService.create({
-      name: result.name as string,
-      age: result.age as number,
-    });
+    return await new UserService().create(this.makeOne());
   }
 
   async createMany(count: number) {
-    const userService = new UserService();
-    const result = this.makeMany(count);
-
-    const users: Array<UserInterface> = [];
-    for (let i = 0; i < result.length; i++) {
-      users.push({
-        name: result[i].name as string,
-        age: result[i].age as number,
-      });
-    }
-
-    return await userService.createMany(users);
+    return new UserService().createMany(this.makeMany(count));
   }
 }
 
