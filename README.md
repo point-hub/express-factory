@@ -48,7 +48,13 @@ new UserFactory().create();
 
 // Create many users
 new UserFactory().createMany(3);
+```
 
+## Features
+
+### Make
+Use the make method to create models without persisting them to the database
+```javascript
 // Make one user without saving to database
 new UserFactory().makeOne();
 // Alias
@@ -58,19 +64,27 @@ new UserFactory().make();
 new UserFactory().makeMany(3);
 // Alias
 new UserFactory().make(3);
+```
 
-// Use Sequence data
+### Sequences
+Sometimes you may wish to alternate the value of a given model attribute for each created model. You may accomplish this by defining a state transformation as a sequence.
+
+```javascript
 const userFactory = new UserFactory();
 userFactory.sequence([
   { name: "John" },
   { name: "Jane" },
 ]);
-const result = userFactory.createMany(3);
+userFactory.createMany(3);
+```
 
-// Use State data
+### State
+State manipulation allow you to define discrete modifications that can be applied to your model factories in any combination.
+
+```javascript
 const userFactory = new UserFactory();
 userFactory.state({
   age: 21,
 });
-const result = userFactory.create();
+userFactory.create();
 ```
