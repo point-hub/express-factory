@@ -1,8 +1,8 @@
 import { expect } from "chai";
-import Connection from "./example/connection.js";
-import UserFactory from "./example/user.factory.js";
-import UserService from "./example/user.service.js";
-import { UserInterface } from "./example/user.model.js";
+import Connection from "./example/connection";
+import UserFactory from "./example/user.factory";
+import { UserInterface } from "./example/user.model";
+import UserService from "./example/user.service";
 
 before(async () => {
   await Connection.connect();

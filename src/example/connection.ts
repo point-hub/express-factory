@@ -1,5 +1,5 @@
-import { MongoMemoryServer } from "mongodb-memory-server";
 import { Db, MongoClient, Collection } from "mongodb";
+import { MongoMemoryServer } from "mongodb-memory-server";
 
 class Connection {
   mongod!: MongoMemoryServer;
