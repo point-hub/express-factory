@@ -3,7 +3,7 @@ import Factory from "../index";
 import { UserInterface } from "./user.model";
 import UserService from "./user.service";
 
-export default class UserFactory extends Factory<UserInterface, Partial<UserInterface>> {
+export default class UserFactory extends Factory<UserInterface> {
   definition() {
     return {
       name: faker.name.findName(),

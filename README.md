@@ -18,7 +18,7 @@ import Factory from "@point-hub/express-factory";
 import { UserInterface } from "./user.model.js";
 import UserService from "./user.service.js";
 
-export default class UserFactory extends Factory<UserInterface, Partial<UserInterface>> {
+export default class UserFactory extends Factory<UserInterface> {
   definition() {
     return {
       name: faker.name.findName(),

@@ -1,7 +1,7 @@
-export default abstract class Factory<T, PartialT extends Partial<T>> {
+export default abstract class Factory<T> {
   modelCount = 1;
-  modelSequence: Array<PartialT> = [];
-  modelState: PartialT = {} as PartialT;
+  modelSequence: Array<Partial<T>> = [];
+  modelState: Partial<T> = {} as Partial<T>;
 
   abstract definition(): T;
 
@@ -14,12 +14,12 @@ export default abstract class Factory<T, PartialT extends Partial<T>> {
     return this;
   }
 
-  sequence(modelSequence: Array<PartialT>) {
+  sequence(modelSequence: Array<Partial<T>>) {
     this.modelSequence = modelSequence;
     return this;
   }
 
-  state(modelState: PartialT) {
+  state(modelState: Partial<T>) {
     this.modelState = modelState;
     return this;
   }
