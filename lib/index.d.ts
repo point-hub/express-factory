@@ -1,20 +1,16 @@
-interface LooseObject {
-    [key: string]: unknown;
-}
-export default abstract class Factory {
+export default abstract class Factory<T> {
     modelCount: number;
-    modelSequence: Array<object>;
-    modelState: object;
-    modelCreate: (data: object) => void;
-    abstract definition(): LooseObject;
-    abstract create(obj: LooseObject): unknown;
-    abstract createMany(obj: Array<LooseObject>): unknown;
+    modelSequence: Array<Partial<T>>;
+    modelState: Partial<T>;
+    abstract definition(): T;
+    abstract create(): Promise<unknown>;
+    abstract createMany(count: number): Promise<unknown>;
     count(modelCount: number): this;
-    sequence(modelSequence: Array<object>): this;
-    state(modelState: object): this;
-    useSequence(): Array<LooseObject>;
-    useState(obj: LooseObject): LooseObject;
-    makeOne(): LooseObject;
-    makeMany(count?: number): Array<LooseObject>;
+    sequence(modelSequence: Array<Partial<T>>): this;
+    state(modelState: Partial<T>): this;
+    useSequence(): Array<T>;
+    useState(obj: T): T;
+    make(count?: number): T | T[];
+    makeOne(): T;
+    makeMany(count: number): T[];
 }
-export {};
