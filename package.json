@@ -18,7 +18,7 @@
     "express",
     "factory"
   ],
-  "author": "martiendt@gmail.com",
+  "author": "Martien Dermawan Tanama <martiendt@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
