@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
-import Factory from "../index";
-import { UserInterface } from "./user.model";
-import UserService from "./user.service";
+import Factory from "../index.js";
+import { UserInterface } from "./user.model.js";
+import UserService from "./user.service.js";
 
 export default class UserFactory extends Factory<UserInterface> {
   definition() {

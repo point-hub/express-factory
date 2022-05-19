@@ -1,10 +1,9 @@
 {
   "extensions": [
-    "ts",
-    "tsx"
+    "ts"
   ],
   "spec": [
-    "src/**/*.spec.*"
+    "src/**/*.spec.ts"
   ],
   "node-option": [
     "experimental-specifier-resolution=node",

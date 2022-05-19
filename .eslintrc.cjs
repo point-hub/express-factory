@@ -11,6 +11,13 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
+  settings: {
+    "import/resolver": {
+      typescript: {
+        alwaysTryTypes: true,
+      },
+    },
+  },
   rules: {
     "prettier/prettier": ["error", { printWidth: 120 }],
     "import/order": [
