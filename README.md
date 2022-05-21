@@ -1,5 +1,7 @@
 # Express Factory
 
+`@point-hub/express-factory` is an ESM-only module - you are not able to import it with `require()`.
+
 Express model factories make it painless to create test database record using your application
 
 ## Installation

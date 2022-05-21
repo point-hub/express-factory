@@ -1,15 +1,14 @@
-import { expect } from "chai";
 import Connection from "./example/connection.js";
 import UserFactory from "./example/user.factory.js";
 import { UserInterface } from "./example/user.model.js";
 import UserService from "./example/user.service.js";
 
-before(async () => {
+beforeAll(async () => {
   await Connection.connect();
   await Connection.init();
 });
 
-after(async () => {
+afterAll(async () => {
   await Connection.stop();
 });
 
@@ -17,20 +16,20 @@ beforeEach(async () => {
   await Connection.refresh();
 });
 
-describe("test", async () => {
+describe("test", () => {
   it("should generate and return user object", async () => {
     const userFactory = new UserFactory();
     const result = userFactory.makeOne();
 
-    expect(result.name).to.exist;
-    expect(result.age).to.exist;
+    expect(result.name).toBeDefined();
+    expect(result.age).toBeDefined();
   });
 
   it("should generate and return array of users", async () => {
     const userFactory = new UserFactory();
     const result = userFactory.makeMany(3);
 
-    expect(result.length).to.be.equal(3);
+    expect(result.length).toBe(3);
   });
 
   it("should use state value", async () => {
@@ -40,7 +39,7 @@ describe("test", async () => {
     });
     const result = userFactory.makeOne();
 
-    expect(result.name).to.be.equal("John Doe");
+    expect(result.name).toBe("John Doe");
   });
 
   it("should use sequence data seed", async () => {
@@ -55,10 +54,10 @@ describe("test", async () => {
     ]);
     const result = userFactory.makeMany(3);
 
-    expect(result.length).to.be.equal(3);
-    expect(result[0].name).to.be.equal("John");
-    expect(result[1].name).to.be.equal("Jane");
-    expect(result[2].name).to.be.equal("John");
+    expect(result.length).toBe(3);
+    expect(result[0].name).toBe("John");
+    expect(result[1].name).toBe("Jane");
+    expect(result[2].name).toBe("John");
   });
 
   it("should use sequence data seed and state value", async () => {
@@ -76,13 +75,13 @@ describe("test", async () => {
     });
     const result = userFactory.makeMany(3);
 
-    expect(result.length).to.be.equal(3);
-    expect(result[0].name).to.be.equal("John");
-    expect(result[1].name).to.be.equal("Jane");
-    expect(result[2].name).to.be.equal("John");
-    expect(result[0].age).to.be.equal(10);
-    expect(result[1].age).to.be.equal(10);
-    expect(result[2].age).to.be.equal(10);
+    expect(result.length).toBe(3);
+    expect(result[0].name).toBe("John");
+    expect(result[1].name).toBe("Jane");
+    expect(result[2].name).toBe("John");
+    expect(result[0].age).toBe(10);
+    expect(result[1].age).toBe(10);
+    expect(result[2].age).toBe(10);
   });
 
   it("should replace sequence value if state exists", async () => {
@@ -100,10 +99,10 @@ describe("test", async () => {
     });
     const result = userFactory.makeMany(3);
 
-    expect(result.length).to.be.equal(3);
-    expect(result[0].name).to.be.equal("Charlie");
-    expect(result[1].name).to.be.equal("Charlie");
-    expect(result[2].name).to.be.equal("Charlie");
+    expect(result.length).toBe(3);
+    expect(result[0].name).toBe("Charlie");
+    expect(result[1].name).toBe("Charlie");
+    expect(result[2].name).toBe("Charlie");
   });
 
   it("should use mongodb database to store data", async () => {
@@ -112,7 +111,7 @@ describe("test", async () => {
     const userService = new UserService();
     const users = await userService.read();
 
-    expect(users).length(1);
+    expect(users.length).toBe(1);
   });
 
   it("should use mongodb database to store many data", async () => {
@@ -121,21 +120,21 @@ describe("test", async () => {
     const userService = new UserService();
     const users = await userService.read();
 
-    expect(users).length(3);
+    expect(users.length).toBe(3);
   });
 
   it("should return an object when call make() without param", async () => {
     const userFactory = new UserFactory();
     const result = userFactory.make() as UserInterface;
 
-    expect(result.name).to.exist;
-    expect(result.age).to.exist;
+    expect(result.name).toBeDefined();
+    expect(result.age).toBeDefined();
   });
 
   it("should return an array when call make(5) with counter as param", async () => {
     const userFactory = new UserFactory();
     const result = userFactory.make(5) as UserInterface[];
 
-    expect(result.length).to.be.equal(5);
+    expect(result.length).toBe(5);
   });
 });

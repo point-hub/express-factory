@@ -1,6 +1,6 @@
 {
   "name": "@point-hub/express-factory",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Express factory",
   "type": "module",
   "main": "lib/index.js",
@@ -10,9 +10,9 @@
   "scripts": {
     "build": "rimraf lib && tsc",
     "lint": "eslint ./src/**/*.ts",
-    "lint:fix": "eslint ./src/**/*.ts --fix",
-    "test": "mocha",
-    "test:coverage": "rimraf coverage && c8 mocha"
+    "lint:fix": "npm run lint -- --fix",
+    "test": "jest",
+    "test:coverage": "rimraf coverage && jest --coverage"
   },
   "keywords": [
     "express",
@@ -26,26 +26,20 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^6.3.1",
-    "@types/chai": "^4.3.1",
     "@types/express": "^4.17.13",
-    "@types/mocha": "^9.1.1",
+    "@types/jest": "^27.5.1",
     "@types/node": "^17.0.33",
-    "@types/sinon": "^10.0.11",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
-    "c8": "^7.11.2",
-    "chai": "^4.3.6",
     "eslint": "^8.15.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "mocha": "^10.0.0",
     "mongodb": "^4.6.0",
     "mongodb-memory-server": "^8.5.2",
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
-    "sinon": "^14.0.0",
-    "ts-node": "^10.7.0",
+    "ts-jest": "^28.0.2",
     "typescript": "^4.6.4"
   }
 }
