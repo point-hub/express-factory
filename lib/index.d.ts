@@ -1,3 +1,4 @@
+export { faker } from "@faker-js/faker";
 export default abstract class Factory<T> {
     modelCount: number;
     modelSequence: Array<Partial<T>>;

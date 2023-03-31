@@ -15,8 +15,7 @@ npm install @point-hub/express-factory --save-dev
 Create a factory file and implement your model definition, create, and createMany methods
 
 ```javascript
-import { faker } from "@faker-js/faker";
-import Factory from "@point-hub/express-factory";
+import Factory, { faker } from "../index.js";
 import { UserInterface } from "./user.model.js";
 import UserService from "./user.service.js";
 
