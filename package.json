@@ -1,6 +1,6 @@
 {
   "name": "@point-hub/express-factory",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Express factory",
   "type": "module",
   "main": "lib/index.js",

@@ -1,4 +1,5 @@
-import Factory, { faker } from "../index.js";
+import { faker } from "@faker-js/faker";
+import Factory from "../index.js";
 import { UserInterface } from "./user.model.js";
 import UserService from "./user.service.js";
 

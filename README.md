@@ -7,7 +7,7 @@ Express model factories make it painless to create test database record using yo
 ## Installation
 
 ```javascript
-npm install @point-hub/express-factory --save-dev
+npm install @faker-js/faker @point-hub/express-factory --save-dev
 ```
 
 ## Usage
@@ -15,7 +15,8 @@ npm install @point-hub/express-factory --save-dev
 Create a factory file and implement your model definition, create, and createMany methods
 
 ```javascript
-import Factory, { faker } from "../index.js";
+import { faker } from "@faker-js/faker";
+import Factory from "../index.js";
 import { UserInterface } from "./user.model.js";
 import UserService from "./user.service.js";
 
